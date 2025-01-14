@@ -1,0 +1,37 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Employee {
+  uuid           String   @default(uuid()) @unique @db.Uuid
+  document       String   @id
+  fullName       String
+  birthDate      DateTime
+  hasComorbidity Boolean
+  doses          Dose[]   @relation("EmployeeDoses")
+  updatedAt      DateTime @default(now()) @updatedAt
+}
+
+model Vaccine {
+  id        Int      @id @default(autoincrement())
+  name      String
+  doses     Dose[]   @relation("VaccineDoses")
+  updatedAt DateTime @default(now()) @updatedAt
+}
+
+model Dose {
+  id               Int      @id @default(autoincrement())
+  dateAdministered DateTime
+  employeeId       String
+  vaccineId        Int
+  batch            String
+  expirationDate   DateTime
+  employee         Employee @relation("EmployeeDoses", fields: [employeeId], references: [document], onDelete: Cascade)
+  vaccine          Vaccine  @relation("VaccineDoses", fields: [vaccineId], references: [id], onDelete: Restrict)
+  updatedAt        DateTime @default(now()) @updatedAt
+}

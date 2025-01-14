@@ -1,60 +1,81 @@
-# Case Técnico Feegow
+# Feegow Clinic - COVID-19 Vaccination Management System
 
-## Apresentação do problema
+## Overview
 
- A Feegow Clinic empresa do ramo de tecnologia para o segmento médico solicita um sistema web **desenvolvido na linguagem PHP ou Node.Js**, para cadastro e controle dos seus colaboradores que foram vacinados contra a COVID-19.
-  O cadastro deve armazenar as seguintes informações:
+The Feegow Clinic COVID-19 Vaccination Management System is a web application designed to manage and control the vaccination status of employees against COVID-19. The system allows for the registration of employees, tracking of vaccination doses, and management of vaccine information.
 
-### Funcionários
+## Features
 
-- CPF  (Chave única);
-- Nome completo
-- Data de nascimento
-- Data da primeira dose
-- Data da segunda dose
-- Data da terceira dose
-- Vacina Aplicada
-- Portador de comorbidade?
+- **Employee Management**: Register and manage employees with details such as CPF, full name, birth date, and comorbidity status.
+- **Vaccination Tracking**: Record and manage vaccination doses for each employee, including vaccine type, batch, and expiration date.
+- **Vaccine Management**: Add and manage vaccine information.
+- **Non-Vaccinated Report**: Generate a report of employees who have not received any vaccination doses.
 
-### Vacinas
+## Technologies Used
 
-- Nome
-- Lote
-- Data de validade
+- **Backend**: Node.js with Express.js
+- **Frontend**: Svelte
+- **Database**: PostgreSQL
+- **ORM**: Prisma
+- **Containerization**: Docker
 
-> Sinta-se à vontade para definir os tipos e tamanhos dos campos, assim como normalizar as tabelas segundo seu julgamento de necessidade. Tenha em mente para isso que esta base de dados deveria manter a sua performance ótima mesmo chegando a centenas de milhares de registros.
+## Getting Started
 
-## Tecnologias usadas
+Follow the instructions below to set up and run the project locally.
 
-Os pré-requisitos para a aplicação:
-- Use o PHP ou Node.js como linguagem backend.
-- Usar o framework front-end de sua preferência.
-- O Banco de dados deve ser relacional, damos preferência para MySQL/PostgreSQL.
-- Documentação sucinta e explicativa de como rodar seu código e levantar os ambientes (vídeo explicativo em um link acessível é aceito desde que o áudio e o vídeo estejam em boa qualidade).
+### Prerequisites
 
-## Avaliação
+- **Node.js**: Ensure you have Node.js installed. You can download it from [nodejs.org](https://nodejs.org/).
+- **Docker**: Ensure you have Docker installed. You can download it from [docker.com](https://www.docker.com/).
 
-Para nos enviar seu código, você poderá escolher **uma das duas** opções abaixo:
-- Fazer um fork deste repositório e nos mandar uma pull-request;
-- Dar acesso ao seu repositório no Github para FeegowWelcomeTech;
-> Caso opte por fazer um pull-request, deixe ele explicativo **apontando tudo que precisa ser feito para rodar a sua aplicação**.
+### Installation
 
-## Será indispensável para apresentação deste case
+1. **Clone the repository**:
+    ```sh
+    git clone git@github.com:augustresende/feegow-challenge-covid.git
+    cd feegow-challenge-covid
+    ```
 
-- Anexar o código SQL necessário para a criação da estrutura de banco de dados (sql padrão ANSII) e os inserts dos dados iniciais mínimos para funcionamento do sistema (serão aceitas as migrations laravel).
-- Anexar as instruções e requisitos mínimos de sistema para que a aplicação seja executada.
-- Instruções básicas de utilização do sistema.
+2. **Startup the database**:
+    ```sh
+    docker-compose up
+    ```
 
-## Requisitos específicos para nível sênior
+3. **Set up the backend**:
+    ```sh
+    npm install
+    npm start
+    ```
 
-- Anonimização do CPF, mostrando apenas os 3 primeiros dígitos
-- Incluir caching para dados de vacinas
-- Aplicação de SOLID
-- Utilizar Fila para extração com Relatório de Não Vacinados com CPF e Nome
+4. **Set up the frontend**:
+    ```sh
+    cd front
+    npm install
+    npm run dev -- --open
+    ```
 
-## Será considerado um diferencial neste case
+### Running the Application
 
-- Validação lógica dos campos no lado do cliente **e** no lado do servidor.
-- Usabilidade intuitiva e tratamento e exceções de sistema.
-- Estruturação do banco de dados em sua **melhor forma normal**.
-- Utilização de Docker.
+- **Backend**: The backend server will be running on `http://localhost:3000`.
+- **Frontend**: The frontend application will open in your default browser.
+
+## API Endpoints
+
+### Employees
+
+- `GET /employees`: Retrieve all employees.
+- `GET /employees/:id`: Retrieve a specific employee by ID.
+- `POST /employees`: Create a new employee.
+- `PATCH /employees/:id`: Update an existing employee.
+- `DELETE /employees/:id`: Delete an employee.
+- `POST /employees/:id/dose`: Add a vaccination dose to an employee.
+- `DELETE /employees/:id/dose/:doseId`: Delete a vaccination dose from an employee.
+- `GET /employees/report/non-vaccinated`: Generate a report of non-vaccinated employees.
+
+### Vaccines
+
+- `GET /vaccines`: Retrieve all vaccines.
+- `GET /vaccines/:id`: Retrieve a specific vaccine by ID.
+- `POST /vaccines`: Create a new vaccine.
+- `PATCH /vaccines/:id`: Update an existing vaccine.
+- `DELETE /vaccines/:id`: Delete a vaccine.

@@ -1,0 +1,31 @@
+{
+  "name": "feegow-challenge-covid",
+  "version": "1.0.0",
+  "description": "Desafio técnico: 'Feegow Clinic', empresa do ramo de tecnologia para o segmento médico solicita um sistema web **desenvolvido na linguagem PHP ou Node.Js**, para cadastro e controle dos seus colaboradores que foram vacinados contra a COVID-19.",
+  "main": "index.js",
+  "scripts": {
+    "start": "tsx src/index.ts",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "seed-db": "tsx ./prisma/seed.ts"
+  },
+  "author": "",
+  "license": "ISC",
+  "prisma": {
+    "seed": "npm run seed-db"
+  },
+  "dependencies": {
+    "@faker-js/faker": "^9.3.0",
+    "@prisma/client": "^6.2.1",
+    "cors": "^2.8.5",
+    "express": "^4.21.2",
+    "gerador-validador-cpf": "^5.0.2",
+    "node-cache": "^5.1.2",
+    "prisma": "^6.2.1"
+  },
+  "devDependencies": {
+    "@types/express": "^5.0.0",
+    "@types/node": "^22.10.6",
+    "tsx": "^4.19.2",
+    "typescript": "^5.7.3"
+  }
+}
